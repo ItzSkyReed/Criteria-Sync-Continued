@@ -8,6 +8,8 @@ val fabricApi = the<FabricApiExtension>()
 val modImplementation = if(obfuscated) configurations.named("modImplementation") else configurations.implementation
 val modJar = if(obfuscated) tasks.named<Zip>("remapJar") else tasks.named<Zip>("jar")
 
+version = "${project.property("mod_version")}+${sc.current.version}"
+
 base {
     archivesName = rootProject.name
 }
