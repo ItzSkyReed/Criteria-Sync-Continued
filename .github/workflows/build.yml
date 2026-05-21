@@ -27,8 +27,7 @@ jobs:
         with:
           archive: false
           path: |
-            build/libs/criteria_sync-*.jar
-            !build/libs/criteria_sync-*-sources.jar
+            build/libs/*.jar
 
       - name: upload release assets
         if: github.event_name == 'release'
@@ -36,8 +35,7 @@ jobs:
         with:
           name: ReleaseAssets
           path: |
-            build/libs/criteria_sync-*.jar
-            !build/libs/criteria_sync-*-sources.jar
+            build/libs/*.jar
 
   publish:
     name: Upload to release
