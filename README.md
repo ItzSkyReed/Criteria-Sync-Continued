@@ -1,8 +1,22 @@
 # criteria-sync
 
-Minecraft mod to sync advancement criteria between players.
+Minecraft mod to synchronize advancement criteria between players.
 
-Synces them immediately when you get it, and on login (for logged in players).
+All online players will have their advancement criteria synchronized
+immediately when obtained, or immediately on login.
+
+Players who obtain the advancements from sync, will not receive
+rewards and wont have a chat message.
+
+You can block certain advancements from synchronizing via a config
+file, if synchronizing them makes them work incorrectly (or for any
+reason, really)
+
+It contains a default list of blocked advancements for BACAP and some addons:
+- https://modrinth.com/datapack/blazeandcaves-advancements-pack
+- https://modrinth.com/datapack/bacap-enhanced-discoveries
+- https://www.planetminecraft.com/data-pack/bacap-suggestion-edition/
+- https://www.planetminecraft.com/data-pack/bacap-torture-edition/
 
 # License
 
