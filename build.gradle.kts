@@ -1,6 +1,10 @@
 import net.fabricmc.loom.api.LoomGradleExtensionAPI
 import net.fabricmc.loom.api.fabricapi.FabricApiExtension
 
+plugins {
+    id("me.modmuss50.mod-publish-plugin") version "1.1.0"
+}
+
 val obfuscated = sc.current.parsed < "26.1"
 plugins.apply(if(obfuscated) "net.fabricmc.fabric-loom-remap" else "net.fabricmc.fabric-loom")
 val loom = the<LoomGradleExtensionAPI>()
@@ -81,6 +85,27 @@ tasks.jar {
 
     from("LICENSE") {
         rename { "${it}_${name}" }
+    }
+}
+
+publishMods {
+    file = modJar.flatMap { it.archiveFile }
+    displayName = "${property("mod_version")} for ${sc.current.version}"
+    version = property("mod_version") as String
+    changelog = rootProject.file("CHANGELOG.md").readText()
+
+    type = STABLE
+    modLoaders.add("fabric")
+
+    dryRun = providers.environmentVariable("MODRINTH_TOKEN").getOrNull() == null
+
+    modrinth {
+        projectId = "VmeKD0kZ"
+        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+        minecraftVersions.addAll(property("minecraft_targets_publishing").toString().split(' '))
+        requires {
+            slug = "fabric-api"
+        }
     }
 }
 

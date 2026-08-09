@@ -3,7 +3,7 @@
   "id": "criteria-sync",
   "version": "${version}",
   "name": "Criteria Sync",
-  "description": "Mod that synces your advancement criteria",
+  "description": "Mod that synchronizes your advancement criteria",
   "authors": [
     "p1k0chu"
   ],

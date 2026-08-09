@@ -4,6 +4,10 @@ plugins {
 	id("net.fabricmc.fabric-loom-remap") apply false
 }
 
+stonecutter tasks {
+    order("publishModrinth")
+}
+
 stonecutter parameters {
     dependencies["java"] = node.project.property("java_version") as String
 
