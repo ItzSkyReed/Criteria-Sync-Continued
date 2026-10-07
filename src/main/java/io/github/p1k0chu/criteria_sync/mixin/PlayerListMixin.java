@@ -27,9 +27,9 @@ public class PlayerListMixin {
     private MinecraftServer server;
 
     @Inject(method = "placeNewPlayer", at = @At("RETURN"))
-    void placeNewPlayer(Connection connection, ServerPlayer serverPlayer, CommonListenerCookie commonListenerCookie, CallbackInfo ci) {
-        int playerId = serverPlayer.getId();
-        var advs = serverPlayer.getAdvancements();
+    void placeNewPlayer(Connection connection, ServerPlayer player, CommonListenerCookie cookie, CallbackInfo ci) {
+        int playerId = player.getId();
+        var advs = player.getAdvancements();
 
         for (var advHolder : server.getAdvancements().getAllAdvancements()) {
             if (CriteriaSync.isAdvancementBlocked(advHolder.toString()) || advHolder.value().display().isEmpty()) {

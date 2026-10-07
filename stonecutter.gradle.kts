@@ -1,7 +1,7 @@
 plugins {
     id("dev.kikugie.stonecutter")
     id("net.fabricmc.fabric-loom") apply false
-	id("net.fabricmc.fabric-loom-remap") apply false
+    id("net.fabricmc.fabric-loom-remap") apply false
 }
 
 stonecutter tasks {
@@ -18,4 +18,4 @@ stonecutter parameters {
     }
 }
 
-stonecutter active "26.1.2"
+stonecutter active "26.3"

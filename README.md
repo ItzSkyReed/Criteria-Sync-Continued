@@ -1,12 +1,14 @@
 # criteria-sync
 
+### This version is a fork of original mod: https://github.com/p1k0chu/criteria-sync
+
 Minecraft mod to synchronize advancement criteria between players.
 
 All online players will have their advancement criteria synchronized
 immediately when obtained, or immediately on login.
 
 Players who obtain the advancements from sync, will not receive
-rewards and wont have a chat message.
+rewards and won't have a chat message.
 
 You can block certain advancements from synchronizing via a config
 file, if synchronizing them makes them work incorrectly (or for any

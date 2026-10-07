@@ -24,21 +24,21 @@ public abstract class PlayerAdvancementsMixin implements AwardCriterion {
     private ServerPlayer player;
 
     @Shadow
-    protected abstract void markForVisibilityUpdate(AdvancementHolder advancementHolder);
+    protected abstract void markForVisibilityUpdate(AdvancementHolder advancement);
 
     @Shadow
-    public abstract AdvancementProgress getOrStartProgress(AdvancementHolder advancementHolder);
+    public abstract AdvancementProgress getOrStartProgress(AdvancementHolder advancement);
 
     @Shadow
-    protected abstract void unregisterListeners(AdvancementHolder advancementHolder);
+    protected abstract void unregisterListeners(AdvancementHolder holder);
 
     @Shadow
     @Final
     private Set<AdvancementHolder> progressChanged;
 
     @Inject(method = "award", at = @At("RETURN"))
-    void award(AdvancementHolder advancementHolder, String string, CallbackInfoReturnable<Boolean> cir) {
-        if (CriteriaSync.isAdvancementBlocked(advancementHolder.toString()) || advancementHolder.value().display().isEmpty()) {
+    void award(AdvancementHolder holder, String criterion, CallbackInfoReturnable<Boolean> cir) {
+        if (CriteriaSync.isAdvancementBlocked(holder.toString()) || holder.value().display().isEmpty()) {
             return;
         }
 
@@ -46,7 +46,7 @@ public abstract class PlayerAdvancementsMixin implements AwardCriterion {
             int thisId = this.player.getId();
             for (var player : this.playerList.getPlayers()) {
                 if (player.getId() != thisId) {
-                    ((AwardCriterion) player.getAdvancements()).criteria_sync$awardSynced(advancementHolder, string);
+                    ((AwardCriterion) player.getAdvancements()).criteria_sync$awardSynced(holder, criterion);
                 }
             }
         }

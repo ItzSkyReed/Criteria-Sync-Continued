@@ -3,7 +3,6 @@ package io.github.p1k0chu.criteria_sync;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import io.github.p1k0chu.criteria_sync.constants.AdvancementIDConstants;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.loader.api.FabricLoader;
@@ -19,7 +18,6 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.nio.file.Path;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
@@ -79,7 +77,8 @@ public class CriteriaSync implements ModInitializer {
             throw new IOException(String.format("\"%s\" is a directory!", blockList.getAbsolutePath()));
         }
         if (blockList.exists()) {
-            var typeToken = new TypeToken<Collection<String>>() {};
+            var typeToken = new TypeToken<Collection<String>>() {
+            };
             Collection<String> strings;
             try (BufferedReader reader = new BufferedReader(new FileReader(blockList))) {
                 strings = GSON.fromJson(reader, typeToken);
